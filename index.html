@@ -1,5 +1,16 @@
-<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+  <style>
+    #game {
+      font-family: 'VT323', monospace;
+    }
+  </style>
+</head>
 
+<html>
+  <div id="game">
+    <div id="gameField"></div>
+  </div>
 </html>
 <script>
   var width = 100;
@@ -16,6 +27,32 @@
       {
         field[h][w] = Math.round(Math.random());
       }
+    }
+  }
+
+  function updateField()
+  {
+    //First empty the field
+    var gameField = document.getElementById('gameField');
+    console.log(gameField);
+    while(gameField.hasChildNodes())
+    {
+      gameField.removeChild(gameField.lastChild);
+    }
+    //Set new Lines
+    for(var h in field)
+    {
+      var line = document.createElement("div");
+      line.setAttribute("id", "line"+h);
+      for(var w in field[h])
+      {
+        var number = document.createElement("span");
+        number.textContent = field[h][w];
+        number.setAttribute("class", "value" + field[h][w]);
+        number.setAttribute("id", "pos" + h + "x" + w);
+        line.appendChild(number);
+      }
+      gameField.appendChild(line);
     }
   }
 </script>
