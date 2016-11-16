@@ -6,6 +6,9 @@
       font-family: 'VT323', monospace;
       font-size: 20px;
     }
+    [class^="value"] {
+      cursor: default;
+    }
     .value1 {
       color: green;
     }
@@ -26,7 +29,6 @@
 
   function updateField()
   {
-    game.nextStep();
     var gameField = document.getElementById("gameField");
     while(gameField.hasChildNodes())
     {
@@ -41,12 +43,27 @@
         var number = document.createElement("span");
         number.textContent = game.getValue(w,h);
         number.setAttribute("class", "value" + game.getValue(w,h));
+        number.setAttribute("hpos", h);
+        number.setAttribute("wpos", w);
         number.setAttribute("id", "pos" + h + "x" + w);
+
+        number.onclick = function(){changeValue(this)};
         line.appendChild(number);
       }
       gameField.appendChild(line);
     }
   }
 
+  function changeValue(ele)
+  {
+    if(ele.textContent == "1")
+    {
+      game.setValue(ele.getAttribute("wpos"),ele.getAttribute("hpos"),0);
+    }
+    else {
+      game.setValue(ele.getAttribute("wpos"),ele.getAttribute("hpos"),1);
+    }
+    updateField();
+  }
   updateField();
 </script>
