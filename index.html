@@ -1,5 +1,6 @@
 <head>
   <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+  <script src="conway.js"></script>
   <style>
     #game {
       font-family: 'VT323', monospace;
@@ -20,26 +21,10 @@
   </div>
 </html>
 <script>
-  var width = 10;
-  var height = 10;
 
-  var livingConditions = [2,3];
-  var bornConditions = [3];
-  function setupRandom()
-  {
-    field = new Object();
-    for(var h = 0; h < height; h++)
-    {
+  var game = new conway(30,30);
 
-      field[h] = (field[h] == undefined) ? new Object() : field[h];
-      for(var w = 0; w < width; w++)
-      {
-        field[h][w] = Math.round(Math.random());
-      }
-    }
-  }
-
-  function updateField()
+  /*function updateField()
   {
     //First empty the field
     var gameField = document.getElementById('gameField');
@@ -65,48 +50,7 @@
     }
   }
 
-  function nextStep()
-  {
-    var nextField = new Object();
-
-    //Sequential iteration because of Problems with calculateLiveNeighbors
-    for(var h = 0; h < height; h++)
-    {
-      nextField[h] = new Object();
-      for(var w = 0; w < width; w++)
-      {
-        var LiveNeighbors = calculateLiveNeighbors(h,w);
-
-        //Check if current cell is alive
-        if(field[h][w])
-        {
-          nextField[h][w] = (livingConditions.indexOf(LiveNeighbors) > -1) ?
-                            1 : 0;
-        }
-        else {
-          nextField[h][w] = (bornConditions.indexOf(LiveNeighbors) > -1) ?
-                            1 : 0;
-        }
-      }
-    }
-    field=nextField;
-    updateField();
-  }
-
-  function calculateLiveNeighbors(h,w)
-  {
-    var sumOfLiveNeighbors = 0;
-    for(var currentH = h-1; currentH<=h+1; currentH++)
-    {
-      if(currentH > -1 && currentH < height)
-        for(var currentW = w-1; currentW<=w+1; currentW++)
-        {
-          sumOfLiveNeighbors += (currentW > -1 && currentW < width) ? field[currentH][currentW] : 0;
-        }
-    }
-    return sumOfLiveNeighbors-field[h][w];
-  }
-
   setupRandom();
   updateField();
+  */
 </script>
