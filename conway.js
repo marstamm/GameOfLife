@@ -10,6 +10,7 @@ class conway {
   get height() {return this._height};
   get width() {return this._width };
   getValue(w,h) {return this._field[h][w]};
+  setValue(w,h,value) {this._field[h][w] = value};
 
   setupRandom()
   {
@@ -35,16 +36,16 @@ class conway {
       nextField[h] = new Object();
       for(var w = 0; w < this._width; w++)
       {
-        var LiveNeighbors = _calculateLiveNeighbors(h,w);
+        var LiveNeighbors = this._calculateLiveNeighbors(h,w);
 
         //Check if current cell is alive
         if(this._field[h][w])
         {
-          nextField[h][w] = (livingConditions.indexOf(LiveNeighbors) > -1) ?
+          nextField[h][w] = (this._livingConditions.indexOf(LiveNeighbors) > -1) ?
                             1 : 0;
         }
         else {
-          nextField[h][w] = (bornConditions.indexOf(LiveNeighbors) > -1) ?
+          nextField[h][w] = (this._bornConditions.indexOf(LiveNeighbors) > -1) ?
                             1 : 0;
         }
       }

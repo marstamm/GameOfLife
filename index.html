@@ -24,25 +24,23 @@
 
   var game = new conway(30,30);
 
-  /*function updateField()
+  function updateField()
   {
-    //First empty the field
-    var gameField = document.getElementById('gameField');
-    console.log(gameField);
+    game.nextStep();
+    var gameField = document.getElementById("gameField");
     while(gameField.hasChildNodes())
     {
       gameField.removeChild(gameField.lastChild);
     }
-    //Set new Lines
-    for(var h in field)
+
+    for(var h = 0; h < game.height; h++)
     {
       var line = document.createElement("div");
-      line.setAttribute("id", "line"+h);
-      for(var w in field[h])
+      for(var w = 0; w < game.width; w++)
       {
         var number = document.createElement("span");
-        number.textContent = field[h][w];
-        number.setAttribute("class", "value" + field[h][w]);
+        number.textContent = game.getValue(w,h);
+        number.setAttribute("class", "value" + game.getValue(w,h));
         number.setAttribute("id", "pos" + h + "x" + w);
         line.appendChild(number);
       }
@@ -50,7 +48,5 @@
     }
   }
 
-  setupRandom();
   updateField();
-  */
 </script>
