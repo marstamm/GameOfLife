@@ -20,12 +20,20 @@
 
 <html>
   <div id="game">
+    <button id="Initialize0" onclick="InitializeZero()">Init</button>
+    <button id="gameNextStep" onclick="nextStep()">Next Step</button>
     <div id="gameField"></div>
   </div>
 </html>
 <script>
 
   var game = new conway(30,30);
+
+  function nextStep()
+  {
+    game.nextStep();
+    updateField();
+  }
 
   function updateField()
   {
@@ -65,5 +73,11 @@
     }
     updateField();
   }
+  function InitializeZero()
+  {
+    game.setupWithValue(0);
+    updateField();
+  }
+
   updateField();
 </script>

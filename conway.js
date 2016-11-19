@@ -26,8 +26,16 @@ class conway {
     }
   }
 
+  setupWithValue(value)
+  {
+    for(var x in this._field)
+      for(var y in this._field[x])
+        this._field[x][y] = value;
+  }
+
   nextStep()
   {
+    console.log(this._field);
     var nextField = new Object();
 
     //Sequential iteration because of Problems with calculateLiveNeighbors
